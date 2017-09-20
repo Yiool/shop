@@ -1,0 +1,25 @@
+.w-role {
+  height: 200px;
+  overflow-y: auto;
+  .toggle {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .title {
+    font-size: 12px;
+    font-family: Tahoma;
+    cursor: pointer;
+  }
+  > li {
+
+  }
+  .sub-list {
+    padding-left: 30px;
+  }
+}
+
+
+
+.viewFramework-member-role-dialog {
+
+}

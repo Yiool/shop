@@ -1,0 +1,23 @@
+.k-time-slider{
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 100%;
+  height: 14px;
+  .slider{
+    height: 100%;
+    width: 100%;
+    background-color: #1f3544;
+    //background-color: #000;
+  }
+  .sliderbar{
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 10px;
+    height: 20px;
+    //background-color: #000;
+    background-color: #5cb85c;
+    cursor: pointer;
+  }
+}

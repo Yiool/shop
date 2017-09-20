@@ -1,0 +1,33 @@
+<div>
+  <div class="radio-inline" ng-repeat="list in items.list">
+    <label>
+      <input type="radio" cb-name="items.name" ng-change="handler()" ng-model="searchParams[items.name]" ng-value="list.id"
+             class="ng-pristine ng-valid">
+      {{list.label}}
+    </label>
+  </div>
+  <div class="radio-inline" ng-form="" name="integer" ng-if="searchParams[items.name] == -2">
+    <div class="f-fl" ng-class="{'has-error': items.start.error}" style="width: 200px;" cb-field-error field-error-status="items.start.error"
+         field-error-message="items.start.message">
+      <input type="text" class="input-control"
+             cb-name="items.start.name"
+             ng-model="searchParams[items.start.name]"
+             ng-change="items.start.handler(searchParams[items.start.name], searchParams[items.end.name])"
+             cb-number-range=""
+             data-value-min="{{items.start.config.min}}"
+             data-value-max="{{items.start.config.max}}"
+             placeholder="{{items.start.config.placeholder}}">
+    </div>
+    <div class="f-fl" style="vertical-align: top; ">&nbsp;~&nbsp;&nbsp;</div>
+    <div class="f-fl" ng-class="{'has-error': items.end.error}" style="width: 200px;" cb-field-error field-error-status="items.end.error" field-error-message="items.end.message">
+      <input type="text" class="input-control"
+             cb-name="items.end.name"
+             ng-model="searchParams[items.end.name]"
+             ng-change="items.end.handler(searchParams[items.start.name], searchParams[items.end.name])"
+             cb-number-range=""
+             data-value-min="{{items.end.config.min}}"
+             data-value-max="{{items.end.config.max}}"
+             placeholder="{{items.end.config.placeholder}}">
+    </div>
+  </div>
+</div>

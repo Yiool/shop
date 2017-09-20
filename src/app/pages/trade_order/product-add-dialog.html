@@ -1,0 +1,187 @@
+<div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" z-index="-1" ng-click="close(false)"
+                aria-hidden="true">&times;</button>
+        <h5 class="modal-title">快速新增商品</h5>
+    </div>
+    <div class="modal-body">
+        <div class="tips-wrapper" ng-if="isTips">
+            <div class="tips">
+                <p>如需填写更多信息，请到【商品管理】编辑。<span class="remove-tip" style="font-weight: 700;" ng-click="closeTips()">x</span></p>
+            </div>
+        </div>
+        <form class="form-horizontal" autocomplete="off" name="product" role="form" novalidate>
+            <div>
+                <div class="form-section">
+                    <div class="form-group f-cb">
+                        <div class="control-label f-fl"><span class="text-red"><i class="icon-required"></i></span>商品类目：</div>
+                        <div class="control-content f-fl">
+                            <div simple-select="id,catename" store="selectCate1.store" select="catename" select-handler="selectCate1.handler(data)" class="product-cate f-fl"></div>
+                            <div ng-if="isSelectCate1">
+                                <div simple-select="id,catename" store="selectCate2.store" select="catename" select-handler="selectCate2.handler(data)" class="product-cate product-cate2 f-fl"></div>
+                            </div>
+                            <div ng-if="!isSelectCate1 && isClickSubmitBtn" style="line-height: 34px;" class="f-fl">
+                                <p style="color: red; margin-left: 5px;">请先选择商品类目</p>
+                            </div>
+                            <!--<input type="text" class="input-control" name="packagename" ng-model="dataBase.name" cb-string-range value-max="20" ng-required="true">-->
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-section" ng-form="list">
+                    <div class="form-group f-cb">
+                        <div class="control-label f-fl"><span class="text-red"><i class="icon-required"></i></span>商品品牌：</div>
+                        <div class="control-content f-fl pull-down">
+                            <div>
+                                <input type="text" class="input-control" name="cnname"
+                                       ng-model="brandname"
+                                       ng-change="searchUsedAttrs(brandname)"
+                                       ng-click="focusBrandInput($event)"
+                                       ng-blur="blurBrandInput()"
+                                       ng-class="{'input-brand': ((list.cnname.$dirty && list.cnname.$invalid) || (list.cnname.$pristine && list.cnname.$invalid && isClickSubmitBtn))}"
+                                       cb-string-range value-max="10"
+                                       ng-required="true"
+                                       placeholder="请输入">
+                            </div>
+                            <ul ng-if="isSelectCate2 && uniqueUsedAttrskus.length && isShowBrand" dg-click="chooseBrand($event, attrsku)" selector="li" class="pull-down-list u-box-shadow" bindonce="uniqueUsedAttrskus">
+                                <li ng-repeat="attrsku in uniqueUsedAttrskus">
+                                    <span bo-text="attrsku.cnname"></span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div ng-if="(isShowBrand && step < 2) || (!brandname && !isSelectCate2 && isClickSubmitBtn)" style="line-height: 34px;" class="f-fl">
+                            <p style="color: red; margin-left: 5px;">请先选择商品类目</p>
+                        </div>
+                        <div ng-if="isSelectCate2 && list.cnname.$pristine && list.cnname.$invalid && isClickSubmitBtn" style="line-height: 34px;" class="f-fl">
+                            <p style="color: red; margin-left: 5px;">请填写商品品牌</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group f-cb">
+                        <div class="control-label f-fl"><span class="text-red"><i class="icon-required"></i></span>商品名称：</div>
+                        <div class="control-content f-fl pull-down">
+                            <div>
+                                <input type="text"
+                                       class="input-control"
+                                       name="productname"
+                                       ng-model="productname"
+                                       ng-blur="blurProductInput()"
+                                       ng-click="focusProductInput($event)"
+                                       ng-change="searchUsedProducts(productname)"
+                                       ng-class="{'input-product': ((list.productname.$dirty && list.productname.$invalid) || (list.productname.$pristine && list.productname.$invalid && isClickSubmitBtn))}"
+                                       cb-string-range
+                                       value-max="20"
+                                       ng-required="true"
+                                       placeholder="请输入">
+                            </div>
+                            <ul ng-if="(brandname && usedProductnames.length && isShowProduct)" dg-click="chooseProduct($event, attrsku)" selector="li" class="pull-down-list u-box-shadow" bindonce="usedProductnames">
+                                <li ng-repeat="attrsku in usedProductnames">
+                                    <span bo-text="attrsku.productname"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-if="(isShowProduct && step < 2) || (!productname && !isSelectCate2 && isClickSubmitBtn)" style="line-height: 34px;" class="f-fl">
+                            <p style="color: red; margin-left: 5px;">请先选择商品类目</p>
+                        </div>
+                        <div ng-if="isSelectCate2 && list.productname.$pristine && list.productname.$invalid && isClickSubmitBtn" style="line-height: 34px;" class="f-fl">
+                            <p style="color: red; margin-left: 5px;">请填写商品名称</p>
+                        </div>
+                        <!--<ul ng-if="usedAttrskus.length && isShowBrand" dg-click="chooseProduct($event, attrsku)" selector="li" class="pull-down-list u-box-shadow" bindonce="usedAttrskus">
+                            <li ng-repeat="attrsku in usedAttrskus">
+                                <span bo-text="attrsku.productname"></span>
+                            </li>
+                        </ul>-->
+                    </div>
+
+                    <div class="form-group f-cb">
+                        <div class="control-label f-fl"><span class="text-red"><i class="icon-required"></i></span>商品单位：</div>
+                        <div class="control-content f-fl">
+                            <div>
+                                <input type="text"
+                                       class="input-control"
+                                       name="unit" ng-required="true"
+                                       ng-model="unit"
+                                       ng-click="focusUnitInput($event)"
+                                       ng-class="{'input-unit': ((list.unit.$dirty && list.unit.$invalid) || (list.unit.$pristine && list.unit.$invalid && isClickSubmitBtn))}"
+                                       placeholder="请输入" cb-string-range value-max="10" />
+                            </div>
+                            <!--<input type="text" class="input-control" name="unit" ng-model="unit"  placeholder="请输入">-->
+                            <div ng-if="(!unit && isClickSubmitBtn)" style="line-height: 34px; position: absolute; right: -76px; top: 0;" class="f-fl">
+                                <p style="color: red; margin-left: 5px;">请选择单位</p>
+                            </div>
+                        </div>
+                        <div ng-if="isUnitInputFocused">
+                            <div product-unit store="unit" handler="unitHandler(data)"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-section" ng-form="sku">
+                    <div class="form-group f-cb">
+                        <div class="control-label f-fl"><span class="text-red"><i class="icon-required"></i></span>规格型号：</div>
+                        <div class="control-content f-fl">
+                            <input type="text" class="input-control"
+                                   name="manualskuvalues"
+                                   ng-model="manualskuvalues"
+                                   ng-disabled="!isSelectCate2 || !brandname || !productname"
+                                   ng-required="true"
+                                   ng-class="{'is-disable': (!isSelectCate2 || !brandname || !productname), 'input-manual': (sku.manualskuvalues.$invalid && $isInvalidManual && isClickSubmitBtn)}"
+                                   placeholder="规格、型号、容量、尺寸、颜色等">
+                        </div>
+                        <div ng-if="sku.manualskuvalues.$invalid && $isInvalidManual && isClickSubmitBtn" style="line-height: 34px;" class="f-fl">
+                            <p style="color: red; margin-left: 5px;">请填写规格型号</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group f-cb">
+                        <div class="control-label f-fl"><span class="text-red"><i class="icon-required"></i></span>零售单价：</div>
+                        <div class="control-content f-fl" style="width: 180px;">
+                            <input type="text" class="input-control" name="saleprice" ng-model="saleprice"
+                                   number-range
+                                   data-value-min="0"
+                                   data-value-max="999999.99"
+                                   data-value-step="0.01"
+                                   data-range-enabled
+                                   ng-disabled="!isSelectCate2 || !brandname || !productname"
+                                   ng-class="{'is-disable': (!isSelectCate2 || !brandname || !productname), 'input-price': (sku.saleprice.$invalid && $isInvalidPrice && isClickSubmitBtn)}"
+                                   ng-required="true"
+                                   maxlength="9" placeholder="0～999999">
+                        </div>
+                        <div ng-if="$overMaxPrice" style="line-height: 34px;" class="f-fl">
+                            <p style="color: red; margin-left: 5px;">零售单价最大为999999</p>
+                        </div>
+                        <div ng-if="sku.saleprice.$invalid && $isInvalidPrice && isClickSubmitBtn" style="line-height: 34px;" class="f-fl">
+                            <p style="color: red; margin-left: 5px;">请填写零售单价</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-section">
+                    <div class="form-group f-cb">
+                        <div class="control-label f-fl">备注：</div>
+                        <div class="control-content f-fl">
+                            <input type="text" class="input-control" ng-model="skudescription" cb-string-range value-max="20" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <div class="inline-block f-tac">
+            <button class="u-btn u-btn-primary u-btn-sm" type="submit" ng-click="saveProduct()">保 存</button>　　
+            <button class="u-btn u-btn-cancel u-btn-sm" type="button" ng-click="close(false)">取 消</button>
+        </div>
+    </div>
+</div>

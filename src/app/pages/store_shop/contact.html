@@ -1,0 +1,55 @@
+<form name="contact" class="form-horizontal" ng-submit="vm.submitBtn()" novalidate autocomplete="off">
+  <div ng-form name="list" ng-repeat="item in vm.dataLists">
+    <div class="form-group">
+      <label class="b-w-3 control-label"><span
+        ng-bind="item.type | formatStatusFilter : 'storeContactPeople'"></span></label>
+      <div class="b-w-5">
+        <input type="text"
+               class="input-control"
+               name="contactname"
+               ng-model="item.contactname"
+               placeholder="请输入{{item.type | formatStatusFilter : 'storeContactPeople'}}姓名">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="b-w-3 control-label">电话</label>
+      <div class="b-w-5">
+        <input type="text"
+               class="input-control"
+               ng-model="item.telephone"
+               name="telephone"
+               cb-telephone-range
+               ng-blur="vm.isTelephone(item, list.telephone)"
+               placeholder="请输入{{item.type | formatStatusFilter : 'storeContactPeople'}}电话">
+        <div>
+          <div class="alert alert-danger" ng-if="item.$isTelephone && list.telephone.$error.telephonePhone">
+            手机号码格式不对</div>
+          <div class="alert alert-danger" ng-if="item.$isTelephone && list.telephone.$error.telephoneFixed">
+            固定座机电话格式不对</div>
+          <div class="alert alert-danger" ng-if="item.$isTelephone && list.telephone.$error.telephoneAll && !list.telephone.$error.telephoneFixed && !list.telephone.$error.telephonePhone">
+            输入不是区号+座机或手机格式号码</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="b-w-3 control-label">邮箱</label>
+      <div class="b-w-5">
+        <input type="text"
+               class="input-control"
+               name="email"
+               ng-model="item.email"
+               ng-blur="vm.isEmail(item, list.email)"
+               ng-pattern="/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/"
+               placeholder="请输入{{item.type | formatStatusFilter : 'storeContactPeople'}}邮箱">
+        <div class="alert alert-danger" ng-if="item.$isEmail && list.email.$error.pattern">邮箱格式不对</div>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+  <div class="form-group">
+    <div class="f-tac">
+      <button type="submit" class="u-btn u-btn-primary u-btn-lg" style="width: 300px" ng-disabled="contact.$invalid">保　存</button>
+    </div>
+  </div>
+</form>

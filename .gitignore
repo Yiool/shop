@@ -1,0 +1,16 @@
+node_modules/
+bower_components/
+coverage/
+.sass-cache/
+.idea/
+.tmp/
+dist/
+release/
+images/
+build/
+npm-debug.log
+.bowerrc
+.editorconfig
+.yo-rc.json
+.stylelintrc
+src/library/

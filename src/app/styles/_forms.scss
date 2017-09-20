@@ -1,0 +1,40 @@
+//
+// Forms
+// --------------------------------------------------
+.form-group:after,.form-group:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+.form-horizontal .control-label {
+  text-align: right;
+  margin-bottom: 0;
+}
+.form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .radio, .form-horizontal .radio-inline {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.checkbox-inline, .radio-inline {
+  position: relative;
+  display: inline-block;
+  line-height:34px;
+  padding: 0 0 0 20px;
+  margin-left: 10px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  font-weight: 400;
+  cursor: pointer;}
+.checkbox-inline input[type=checkbox], .checkbox input[type=checkbox], .radio-inline input[type=radio], .radio input[type=radio] {
+  position: absolute;
+  margin-left: -20px;
+  top: 9px;
+  margin-top: 1px;
+  width: 16px;
+  height: 16px;
+}
+
+
+label{
+  font-size:14px;
+  color: #666;
+}

@@ -1,0 +1,19 @@
+<div class="datepicker-popup" ng-if="isOpen">
+  <div class="datepicker-warp" ng-switch="datepickerMode">
+    <div cb-datepicker-year ng-switch-when="year" tabindex="0"></div>
+    <div cb-datepicker-month ng-switch-when="month" tabindex="0"></div>
+    <div cb-datepicker-day ng-switch-when="day" tabindex="0"></div>
+    <div cb-datepicker-time ng-switch-when="time" tabindex="0"></div>
+  </div>
+
+  <div class="showButtonBar f-cb">
+      <span class="btn-group f-fl">
+      <button type="button" class="u-btn u-btn-xs u-btn-primary u-btn-w uib-datepicker-current ng-binding"
+              ng-click="datepicker.select('today', $event)" ng-disabled="isDisabled('today')" ng-bind="currentText"></button>
+      <button type="button" class="u-btn u-btn-xs u-btn-danger u-btn-w uib-clear ng-binding" ng-click="datepicker.select(null, $event)"
+              ng-bind="clearText"></button>
+      </span>
+    <button type="button" class="u-btn u-btn-xs u-btn-cancel u-btn-w f-fr uib-close ng-binding f-fr" ng-click="datepicker.close($event)"
+            ng-bind="closeText"></button>
+  </div>
+</div>

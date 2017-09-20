@@ -1,0 +1,69 @@
+<div>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" z-index="-1" ng-click="close(false)"
+            aria-hidden="true">&times;</button>
+    <h5 class="modal-title">储值卡设置</h5>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" autocomplete="off" name="setting" role="form" novalidate>
+      <div class="setting f-cb">
+        <div class="m-group f-cb cover">
+          <div class="u-label f-fl"><span class="text-red"><i class="icon-required"></i></span>储值卡图片：</div>
+          <div class="u-control f-fl">
+            <ol class="btn-group f-fl" dg-click="select($event, item)" selector="li">
+              <li ng-repeat="item in covers" class="{{item.sClass}}" ng-class="{'active': item.active}">
+                <img ng-src="{{item.images}}" alt="">
+                <span></span>
+              </li>
+            </ol>
+            <div class="images-group f-fl">
+              <img class="images" ng-src="{{dataBase.cover}}" alt="">
+              <h4 class="title" ng-bind="manager"></h4>
+              <h5 class="debitcard">储值卡</h5>
+              <h3 class="text">
+                <span class="u-truncate-text" ng-bind="dataBase.name"></span>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="f-cb group-row">
+          <div class="m-group f-fl">
+            <div class="u-label f-fl"><span class="text-red"><i class="icon-required"></i></span>充值活动： </div>
+            <div class="u-control f-fl">
+                <input type="text" class="input" maxlength="20" ng-model="dataBase.name" name="name" placeholder="输入充值活动名称" cb-placeholder  ng-required="true">
+            </div>
+          </div>
+          <div class="m-group f-fl">
+            <div class="u-label f-fl"><span class="text-red"><i class="icon-required"></i></span>发行数量：</div>
+            <div class="u-control f-fl">
+              <input type="text" class="input" ng-model="dataBase.quantity" name="quantity" cb-number-range=""  range-enabled="true" data-value-min="-1" data-value-max="10000000" placeholder="输入发行数量" maxlength="7" cb-placeholder ng-required="true">
+            </div>
+          </div>
+        </div>
+        <div class="f-cb group-row">
+          <div class="m-group f-fl">
+            <div class="u-label f-fl"><span class="text-red"><i class="icon-required"></i></span>充值金额：</div>
+            <div class="u-control f-fl">
+              <input type="text" class="input" ng-model="dataBase.rechargeamount" ng-change="checkRechargeamount(dataBase)" maxlength="6" name="rechargeamount" cb-number-range=""  range-enabled="true" data-value-min="-1" data-value-max="1000000" placeholder="输入充值金额" cb-placeholder ng-required="true" ng-readonly="isReadonly">
+            </div>
+          </div>
+          <div class="m-group f-fl">
+            <div class="u-label f-fl"><span class="text-red"><i class="icon-required"></i></span>赠送金额：</div>
+            <div class="u-control f-fl">
+              <input type="text" class="input" ng-model="dataBase.giveamount"  ng-change="checkRechargeamount(dataBase)" name="giveamount" maxlength="6" cb-number-range=""  range-enabled="true" data-value-min="-1" data-value-max="1000000" placeholder="输入赠送金额" cb-placeholder ng-required="true" ng-readonly="isReadonly">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-danger" ng-show="dataBase.isPrevent">
+        赠送不能比充值多
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="inline-block f-tac">
+      <button class="u-btn u-btn-primary u-btn-sm" ng-click="confirm()" ng-disabled="setting.$invalid || dataBase.isPrevent">确　定</button>　　
+      <button class="u-btn u-btn-cancel u-btn-sm" ng-click="close(false)">取　消</button>
+    </div>
+  </div>
+</div>

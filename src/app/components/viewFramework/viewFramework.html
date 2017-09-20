@@ -1,0 +1,12 @@
+<div>
+  <div class="viewFramework-topbar" ng-if="(!view.config.disableNavigation && !view.config.hideTopbar)">
+    <div cb-shop-topbar topbar-nav-links="view.config.topbarNavLinks"></div>
+  </div>
+  <div class="viewFramework-sidebar" ng-if="(!view.config.disableNavigation && !view.config.hideSidebar)">
+    <div cb-shop-sidebar type="{{view.config.sidebar}}" class="sidebar-content"></div>
+  </div>
+  <div class="viewFramework-main" ui-view id="j-viewFramework-scrollTop"></div>
+</div>
+
+
+

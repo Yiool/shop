@@ -1,0 +1,19 @@
+<ol class="k-breadcrumb">
+  <li><a ui-sref="trade.order.list({page:1})">交易管理</a></li>
+  <li class="active">评价管理</li>
+</ol>
+
+<div class="g-view u-outter-container trade-comment-list" style="min-width:1148px;">
+  <div class="u-inner-container">
+    <div cb-access-control="chebian:store:trade:comment:search" simple-search="" config="vm.searchModel.config" search-handler="vm.searchModel.handler(data)"></div>
+    <!--<div ng-if="vm.gridModel.columns.length" simple-grid columns="vm.gridModel.columns" store="vm.gridModel.itemList"-->
+         <!--pagination-info="vm.gridModel.paginationinfo" loading-state="vm.gridModel.loadingState"-->
+         <!--config="vm.gridModel.config" sort-changed="vm.gridModel.sortChanged(data)" request-params="vm.gridModel.requestParams"-->
+         <!--page-changed="vm.gridModel.pageChanged(page)"></div>-->
+    <div ng-if="vm.gridModel.columns.length" simple-grid columns="vm.gridModel.columns" store="vm.gridModel.itemList" loading-state="vm.gridModel.loadingState"
+         config="vm.gridModel.config" sort-changed="vm.gridModel.sortChanged(data)" request-params="vm.gridModel.requestParams"></div>
+    <div ng-if="vm.gridModel.itemList" class="u-pagination" simple-pagination previous-text="&lt;" next-text="&gt;" config="vm.gridModel.config"
+         on-select-page="vm.gridModel.pageChanged(page)" pagination-info="vm.gridModel.paginationinfo"
+         rotate="false" boundary-link-numbers="true" force-ellipses="true" show-page-goto="true"></div>
+  </div>
+</div>

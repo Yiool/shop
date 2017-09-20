@@ -1,0 +1,85 @@
+<div>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" z-index="-1" ng-click="close(false)" aria-hidden="true">&times;</button>
+    <h5 class="modal-title">会员充值</h5>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" autocomplete="off" name="balance" role="form" novalidate>
+      <div ng-if="!interception">
+        <h2 class="h3 f-tac"><span ng-bind="item.realname"></span> （<span ng-bind="item.mobile"></span>）</h2>
+        <br>
+        <div class="form-group f-cb">
+          <label class="control-label">余额</label>
+          <div class="b-w-8">
+            <div>
+              <span class="input-control readonly" style="border: none; background: none; box-shadow: none;" ng-bind="item.balance | moneyformatFilter"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group f-cb">
+          <label class="control-label"><span class="text-danger"><i class="icon-required"></i></span><span>充值</span></label>
+          <div class="b-w-8" ng-class="{'has-error': message.rechargeamountflag}" cb-field-error field-error-status="message.rechargeamountflag" field-error-message="message.rechargeamount">
+            <input type="text" class="input-control" name="rechargeamount" ng-model="baseData.rechargeamount" cb-money-range=""
+                   data-value-min="0.01"
+                   range-enabled="true"
+                   data-value-max="10000000"
+                   ng-required="true"
+                   ng-change="checkRechargeamount(balance.rechargeamount.$error.cbMoneyRange)" maxlength="11">
+          </div>
+        </div>
+        <div class="form-group f-cb">
+          <label class="control-label">赠送</label>
+          <div class="b-w-8" ng-class="{'has-error': message.giveamountflag}" cb-field-error field-error-status="message.giveamountflag" field-error-message="message.giveamount">
+            <input type="text" class="input-control"
+                   name="giveamount"
+                   ng-model="baseData.giveamount"
+                   cb-money-range=""
+                   data-value-min="0"
+                   range-enabled="true"
+                   data-value-max="1000000"
+                   ng-change="checkGiveamount(balance.giveamount.$error.cbMoneyRange)" maxlength="11">
+          </div>
+        </div>
+
+        <div class="form-group f-cb">
+          <label class="control-label">支付方式</label>
+          <div class="control-content">
+            <button class="u-btn active u-btn-sm u-btn-default" ng-class="{'order-paytype-active': type.current}" ng-disabled="!type.isBalance" style="margin-right: 10px;" ng-repeat="type in paytype" ng-click="setPaytype(type)"><span ng-bind="type.label"></span></button>
+          </div>
+        </div>
+
+      </div>
+      <div ng-if="interception" class="f-tac charge_confirm">
+        <!--<div class="icon confirm"></div>-->
+          <h2 class="h3 f-tac" style="padding-bottom: 20px">
+              <span ng-bind="item.realname"></span> （<span ng-bind="item.mobile"></span>）
+          </h2>
+        <div class="f-cb charge" style="margin-bottom: 10px">
+            <div class="event-title f-fl f-tar" style="margin-right: 10px">充值：</div>
+            <div class="event-content f-fl f-tal" style="margin-top: -17px">
+                <strong style="font-size: 30px; color:#ff0000; font-weight: normal;">&yen; </strong><strong style="font-size: 30px; color:#ff0000; font-weight: normal;" ng-bind="baseData.rechargeamount | number : '2'"></strong>
+            </div>
+        </div>
+        <div class="f-cb gift">
+            <div class="event-title f-fl f-tar" style="margin-right: 12px">赠送：</div>
+            <div class="enent-content f-fl f-tal">
+                &yen; <span ng-bind="baseData.giveamount | number : '2'"></span>
+            </div>
+        </div>
+      </div>
+    </form>
+    <div class="alert alert-danger" ng-if="isPrevent()">
+      赠送不能比充值多
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="inline-block f-tac" ng-if="!interception">
+      <button class="u-btn u-btn-primary u-btn-sm" ng-click="interceptionConfirm()" ng-disabled="balance.$invalid || isPrevent()">确　定</button>　　
+      <button class="u-btn u-btn-cancel u-btn-sm" ng-click="close(false)">取　消</button>
+    </div>
+    <div class="inline-block f-tac" ng-if="interception">
+      <button class="u-btn u-btn-primary u-btn-sm" ng-click="confirm()">确　定</button>　　
+      <button class="u-btn u-btn-cancel u-btn-sm" ng-click="close(false)">取　消</button>
+    </div>
+  </div>
+</div>

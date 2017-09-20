@@ -1,0 +1,82 @@
+.viewFramework-setting-debitcard-dialog{
+  .modal-dialog{
+    width: 1000px;
+  }
+  .setting{
+    .group{
+      width: 50%;
+      .label{
+        width: 40%;
+        height: 58px;
+        vertical-align: middle;
+        background-color: #f2f2f2;
+      }
+      .control{
+        width: 60%;
+        height: 58px;
+      }
+      &.cover{
+        width: 100%;
+        .control{
+          height: 340px;
+          .btn-group{
+            li{
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: #ddd;
+              &.active{
+                background-color: red;
+              }
+            }
+            .cover1{
+              background-color: #d81e06;
+            }
+            .cover2{
+              background-color: #d4237a;
+            }
+            .cover3{
+              background-color: #e0620d;
+            }
+            .cover4{
+              background-color: #038ae3;
+            }
+            .cover5{
+              background-color: #1afa29;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.m-user-model{
+  width: 100%;
+  height: 100px;
+  background-color: #f5f8fa;
+  border: 1px solid #e4e4e4;
+  .user-images{
+    overflow: hidden;
+    width: 84px;
+    height: 84px;
+    margin: 8px 10px 8px 30px;
+    border-radius: 84px;
+    img{
+      width: 100%;
+      height:100%;
+    }
+  }
+  .user-account{
+    min-width: 150px;
+    margin-top: 20px;
+    padding-right: 50px;
+    line-height: 30px;
+    strong{
+      font-size: 16px;
+    }
+  }
+  .user-info{
+    margin-top: 20px;
+    line-height: 30px;
+  }
+}

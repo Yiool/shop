@@ -1,0 +1,23 @@
+<div class="m-product-category">
+ <!-- <div class="category-title" ng-if="isShowBtn">
+    <a class="category-toggle" ng-click="config.toggleItems()">请先选择商品类目</a>
+  </div>
+  <div class="category-select" ng-if="isSelected">
+    <p><span ng-bind="pcateid.parentCatename" ></span> <span class="f-st">&gt;</span> <span ng-bind="pcateid.catename"></span> <a class="f-curp cate-edit" ng-if="!isEdit" ng-click="reselect()" title="重选商品类目">重选</a></p>
+  </div>-->
+  <div class="category-items" style="position: absolute; z-index: 12;">
+    <div class="items-expand u-box-shadow">
+      <ul class="list" dg-mouseenter="selectCategory($event, item)" selector="li">
+        <li class="name" ng-class="{'active': item.id == currentIndex}" ng-repeat="item in store track by $index" bindonce=""><span bo-text="item.catename" class="u-fw-600"></span> <span class="f-st f-fr">&gt;</span></li>
+      </ul>
+
+      <div class="tags" dg-click="select($event, subItem)" selector="a">
+        <p>
+          <a bindonce="" class="u-item f-curp" ng-class="{'active': subItem.id == currentChildIndex}" ng-repeat="subItem in categoryItems track by subItem.id" bo-text="subItem.catename"></a>
+        </p>
+      </div>
+        <!--<span class="category-cancel" ng-click="closeItems()"><i class="icon-remove-circle"></i></span>-->
+    </div>
+  </div>
+</div>
+

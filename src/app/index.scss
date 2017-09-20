@@ -1,0 +1,220 @@
+
+/* 皮肤 skin********************************************************/
+/**
+ * 如果你需要把皮肤型的样式抽离出来，通常为文字色、背景色（图）、边框色等，
+ * 非换肤型网站通常只提取文字色！非换肤型网站不可滥用此类！
+ */
+.s-title {
+}
+
+/*图标 iconfont*******************************************************/
+/**
+ * 图标分为图标字体和图片图标，这些图标网站整体统一可以共用，图片可以同雪碧图。
+ */
+.i-iconfont {
+}
+
+/*模块  module********************************************************/
+/**
+ * 通常是一个语义化的可以重复使用的较大的整体！比如导航、登录、注册、各种列表、评论、搜索等！
+ */
+.m-logo {
+}
+
+.m-list {
+}
+
+/*组件  widget********************************************************/
+/**
+ * 通常是一个语义化的可以重复使用的独立的较大的整体！比如模态，灯箱，轮播图，选项卡，提示等！
+ */
+.k-motai {
+}
+
+.k-lightbox {
+}
+
+.k-slide {
+}
+
+.k-tab {
+}
+
+/*元件  unit********************************************************/
+/**
+ * 通常是一个不可再分的较为小巧的个体，通常被重复用于各种模块和组件中！比如按钮、输入框、loading等！
+ */
+.u-btn {
+}
+
+.u-inp {
+}
+
+/*状态  condition********************************************************/
+/**
+ * 为状态类样式加入前缀，统一标识，方便识别
+ */
+.c-sel {
+}
+
+/* (selected)    选中 */
+.c-cur {
+}
+
+/* (current)    当前 */
+.c-show {
+}
+
+/* (show)    显示 */
+.c-hide {
+}
+
+/* (hide)    隐藏 */
+.c-open {
+}
+
+/* (open)    打开 */
+.c-close {
+}
+
+/* (close)    关闭 */
+.c-err {
+}
+
+/* (error)    出错 */
+.c-dis {
+}
+
+/* (disabled)    不可用 */
+.c-sel {
+}
+
+/* (selected)    选中 */
+
+
+body {
+  min-width: 1280px;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+.text-border {
+  display: block;
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 12px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  &.text-border-warning {
+    color: #ff9600;
+    border-color: #ff9600;
+  }
+  &.text-border-error {
+    color: #db2822;
+    border-color: #db2822;
+  }
+}
+.default-product-image {
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+  background: url(../assets/images/default_product_image.png) 0 0 no-repeat;
+  background-size: cover;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../assets/images/default_product_image.png',  sizingMethod='scale');
+}
+:root .default-product-image{
+  filter: none;
+}
+.default-service-image {
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+  background: url(../assets/images/default_service_image.png) 0 0 no-repeat;
+  background-size: cover;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../assets/images/default_service_image.png',  sizingMethod='scale');
+}
+:root .default-product-image{
+  filter: none;
+}
+.default-car-image {
+  display: inline-block;
+  width: 160px;
+  height: 112px;
+  background: url(../assets/images/default_car_image.png) 0 0 no-repeat;
+  background-size: cover;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../assets/images/default_car_image.png',  sizingMethod='scale');
+}
+:root .default-product-image{
+  filter: none;
+}
+.default-user-image {
+  display: inline-block;
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: url(../assets/images/default_user_image.png) 0 0 no-repeat;
+  background-size: cover;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../assets/images/default_user_image.png',  sizingMethod='scale');
+}
+:root .default-product-image{
+  filter: none;
+}
+.k-breadcrumb {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 15px;
+  border-bottom: 1px solid #cccccc;
+  li {
+    float: left;
+  }
+  > li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    font-family: 'icomoon';
+    content: "\e911";
+  }
+}
+
+.viewFramework-main,div[ui-view]>div[ui-view],.g-view{
+  height: 100%;
+}
+
+//全局边距
+.container-fluid{
+  padding-right:26px;
+  padding-left: 14px;
+}
+.b-tab-bor{
+  border-bottom:1px solid #ccc;
+  padding-bottom:20px;
+  margin-bottom:24px;
+}
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector

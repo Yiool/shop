@@ -1,0 +1,94 @@
+<ol class="k-breadcrumb">
+    <li><a ui-sref="finance.journal.list({page:1})">交易管理</a></li>
+    <li class="active">开单模板管理</li>
+</ol>
+
+<div class="g-view-template">
+    <div class="content-wrapper">
+        <!-- 说明文字  S -->
+        <div class="m-explaintion">
+            <h3>说明：</h3>
+            <p>1、可将经常使用的服务或商品设为模板后，一键开单。</p>
+            <p>2、上下拖动可对模板排序。位置靠前的模板在开单页面排列也靠前。</p>
+        </div>
+        <!-- 说明文字 E -->
+
+        <!-- 操作区域 S -->
+        <div class="m-opreat">
+            <button cb-access-control="chebian:store:trade:porder:add"
+               class="u-btn u-btn-primary u-btn-sm"
+               create-order-template-dialog="add"
+               item-handler="vm.propsParams.addOrderTemplateCb(data)"
+               title="最多设置10个模板"
+               ng-disabled="vm.dataBase.length>=10" >新增开单模板</button>
+        </div>
+        <!-- 操作区域 E -->
+
+        <!-- 列表区域 S -->
+        <div class="m-list">
+            <table>
+                <thead>
+                <tr>
+                    <th style="padding-left: 30px">模板名称</th>
+                    <th>备注</th>
+                    <th class="f-tar" style="padding-right: 60px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--{{vm.dataBase}}-->
+                <tr ng-repeat="item in vm.dataBase track by $index" draggable="true" drag-item="" drag-end="vm.dragItem(data)">
+                    <td style="padding-left: 30px" class="pop-drop">
+                        <span ng-if="$index > 4 " ng-bind="item.fastordername" cb-popover popover-placement="bottom-left" popover-template-id="templateInfo.html" popover-animation="false" popover-template-data="item"></span>
+                        <span ng-if="$index <= 4 " ng-bind="item.fastordername" cb-popover popover-placement="top-left" popover-template-id="templateInfo.html" popover-animation="false" popover-template-data="item"></span>
+                    </td>
+                    <td ng-bind="item.bak"></td>
+                    <td class="f-tar" style="padding-right: 60px">
+                        <a class="text-link" href="javascript:;" create-order-template-dialog="add" item-handler="vm.propsParams.addOrderTemplateCb(data)" item="item">编辑</a>
+                        <span style="color: #eee;margin: 0 20px;">|</span>
+                        <a class="text-link" href="javascript:;" ng-click="vm.deleteItem(item)">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="grid-loading" ng-if="vm.loadingState">
+                <span class="loading"><span><i class="icon-loading"></i></span>正在加载中...</span>
+            </div>
+            <div class="grid-nodata" ng-if="!vm.loadingState && !vm.dataBase.length">
+                <span><i class="icon-not-data"></i>暂无数据</span>
+            </div>
+        </div>
+        <!-- 列表区域 E -->
+    </div>
+</div>
+
+<script type="text/ng-template" id="templateInfo.html">
+
+
+    <table class="template-table">
+        <thead>
+            <tr>
+                <th>类型</th>
+                <th>服务/商品</th>
+                <th class="f-tar">服务费/零售单价</th>
+                <th class="f-tar">数量</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in templateData.fastOrderItems">
+                <td>
+                    <span ng-bind="item.type==0?'服务':'商品'"></span>
+                </td>
+                <td>
+                    <span ng-bind="item.name"></span>
+                </td>
+                <td class="f-tar">
+                    <span ng-bind="item.originprice | moneyformatFilter"></span>
+                </td>
+                <td class="f-tar">
+                    <span ng-bind="item.num"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</script>

@@ -1,0 +1,49 @@
+.user-grade{
+  .table{
+    td,th{
+      text-align: center;
+      width: 32%;
+      &:first-child{
+        width: 4%;
+      }
+      .form-control{
+        display: inline-block;
+        width: auto;
+        text-align: center;
+      }
+    }
+    th{
+      background-color: #d9edf7;
+    }
+    td{
+      border-bottom: 1px solid #ddd;
+    }
+    tr.even{
+      background-color: #ccc;
+    }
+    .add{
+      border: none;
+      background: none;
+      font-size: 18px;
+      line-height: 40px;
+      color: #4f9fcf;
+    }
+  }
+}
+.form-text{
+   width:50%;
+  height:30px;
+  border:1px solid #c0c0c0;
+  padding-left:4px;
+}
+.has-warning{
+  .form-text{
+    border-color: #a94442;
+  }
+}
+.adduser{
+  color: #0d8fe4;
+  font-size:16px;
+  padding:4px;
+  cursor: pointer;
+}

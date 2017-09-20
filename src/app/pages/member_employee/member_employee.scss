@@ -1,0 +1,25 @@
+.member-emplyee-list {
+
+  &.g-view {
+
+    background-color: #d7d7d7;
+    min-height: 100%;
+    //position: relative;
+  }
+
+
+  .w-grid .grid-header {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  .grid-body {
+    padding-bottom: 20px;
+  }
+
+  .w-search {
+    padding: 20px;
+    background-color: #fafafa;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  }
+}

@@ -1,0 +1,130 @@
+<ol class="k-breadcrumb">
+  <li><a ui-sref="product.goods.list({page:1})">商品与服务</a></li>
+  <li class="active">商品管理</li>
+</ol>
+
+<div class="g-view-goods">
+  <div class="trade-wrapper">
+    <div class="trade-search">
+      <div cb-access-control="chebian:store:product:goods:view" simple-search="" config="vm.searchModel.config" search-handler="vm.searchModel.handler(data)" class="b-tab-bor"></div>
+    </div>
+    <div class="trade-grid">
+      <div class="grid-header f-cb">
+        <div class="f-fl">
+          <a cb-access-control="chebian:store:product:goods:add" ui-sref="product.goods.add()"
+             class="u-btn u-btn-primary u-btn-sm">新增商品</a>
+        </div>
+        <div class="f-fr">
+          <div class="f-fl export">
+            <a cb-access-control="chebian:store:product:goods:export" export-data="{{vm.propsParams.requestParams.request}}" params="vm.propsParams.requestParams.params" target="_blank">导出</a>
+          </div>
+          <div class="f-fl switchover"  ng-if="!vm.gridModel.loadingState && vm.gridModel.itemList.length">
+            <a class="active" ng-click="vm.switchMode()"><i class="icon-list"></i></a>
+            <a ng-click="vm.switchMode('view')"><i class="icon-view"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="grid-body">
+        <div class="simple-table table-scroll-position-left" table-scroll-position>
+          <div class="table-content">
+            <div class="table-scroll">
+              <div class="table-body" style="overflow-x: auto;">
+                <table class="table-fixed" >
+                  <colgroup>
+                    <col style="width: 130px; min-width: 130px;">
+                    <col style="width: 120px; min-width: 120px;">
+                    <col style="width: 140px; min-width: 140px;">
+                    <col style="width: 90px; min-width: 90px;">
+                    <col style="width: 140px; min-width: 140px;">
+                    <col style="width: 50px; min-width: 50px;">
+                    <col style="width: 20px; min-width: 20px;">
+                    <col style="width: 50px; min-width: 50px;">
+                    <col style="width: 20px; min-width: 20px;">
+                    <col style="width: 120px; min-width: 120px;">
+                    <col style="width: 120px; min-width: 120px;">
+                    <col style="width: 50px; min-width: 50px;">
+                    <col style="width: 15px; min-width: 15px;">
+                    <col style="width: 50px; min-width: 50px;">
+                    <col style="width: 130px; min-width: 130px;">
+                  </colgroup>
+                  <thead class="table-thead">
+                  <tr>
+                    <th class="order-btn" style="padding-left: 20px;cursor: pointer" ng-click="vm.gridModel.serverSortHandler('catename', vm.gridModel.sortReverse)">商品类目&nbsp;<span class="f-curp sort-icon" ng-class="{'icon-arrow-up': vm.gridModel.sortReverse['catename'],'icon-arrow-down':!vm.gridModel.sortReverse['catename']}"></span></th>
+                    <th class="order-btn" style="cursor: pointer" ng-click="vm.gridModel.serverSortHandler('code', vm.gridModel.sortReverse)">商品编码&nbsp;<span class="f-curp  sort-icon" ng-class="{'icon-arrow-up': vm.gridModel.sortReverse['code'],'icon-arrow-down':!vm.gridModel.sortReverse['code']}"></span></th>
+                    <th class="order-btn" style="padding-left: 5px;cursor: pointer" ng-click="vm.gridModel.serverSortHandler('productname', vm.gridModel.sortReverse)">商品名称&nbsp;<span class="f-curp sort-icon" ng-class="{'icon-arrow-up': vm.gridModel.sortReverse['productname'],'icon-arrow-down':!vm.gridModel.sortReverse['productname']}"></span></th>
+                    <th class="order-btn" style="padding-left: 5px;cursor: pointer" ng-click="vm.gridModel.serverSortHandler('cnname', vm.gridModel.sortReverse)">品牌&nbsp;<span class="f-curp sort-icon" ng-class="{'icon-arrow-up': vm.gridModel.sortReverse['cnname'],'icon-arrow-down':!vm.gridModel.sortReverse['cnname']}"></span></th>
+                    <th class="f-tar">零售单价</th>
+                    <th class="f-tar" style="position: relative;right: -17px;">销量</th>
+                    <th class="f-tal pl5"></th>
+                    <th class="f-tar" style="position: relative;right: -17px;">库存</th>
+                    <th class="f-tal pl5"></th>
+                    <th class="f-tal" style="padding-left: 20px;">创建时间</th>
+                    <th class="f-tal" style="padding-left: 20px;">最近编辑</th>
+                    <th class="f-tar" style="position: relative;right: -17px;">保质期</th>
+                    <th class="f-tal pl5" style="padding-right: 30px;"></th>
+                    <th>状态</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody class="table-tbody">
+                      <tr bindonce ng-repeat="item in vm.gridModel.itemList">
+                        <td style="padding-left: 20px;"><span class="state-unread" bo-bind="item.catename"></span></td>
+
+                        <!--<td><span bo-bind="item.code"></span></td>-->
+                        <td><span simple-truncate-text="{{item.code}}" resize="true"></span></td>
+
+                        <td style="padding-left: 5px;"><span class="state-unread" simple-truncate-text="{{item.productname}}" resize="true"></span></td>
+
+                        <td style="padding-left: 5px;"><span class="state-unread" simple-truncate-text="{{item.cnname}}" resize="true"></span></td>
+
+                        <td class="f-tar"><span class="state-unread" bo-text="item.salepriceText"></span></td>
+
+                        <td class="f-tar"><span class="state-unread"><span ng-class="{'text-danger':item.skusalenum == 0}" bo-text="item.skusalenum"></span></span></td>
+                        <td class="f-tal pl5"><span cb-truncate-text="{{item.unit}}" text-length="2"></span></td>
+
+                        <td class="f-tar"><span class="state-unread" bo-text="item.$$stockShow" ng-class="{'text-danger':item.$$stockShow == 0}"></span></td>
+                        <td class="f-tal pl5"><span cb-truncate-text="{{item.unit}}" text-length="2"></span></td>
+
+                        <td class="f-tal" style="padding-left: 20px;"><span class="state-unread" bo-text="item.$createtime"></span></td>
+
+                        <td class="f-tal" style="padding-left: 20px;"><span class="state-unread" bo-text="item.$updatetime"></span></td>
+
+                        <td class="f-tar"><span class="state-unread" bo-text="item.shelflife"></span></td>
+                        <td class="f-tal pl5" style="padding-right: 30px;"><span ng-if="item.shelflife">天</span></td>
+
+                        <td class="f-tal"><span class="state-unread" ng-class="{'text-muted': item.remove == 1}" ng-bind="item.$statusText"></span></td>
+
+                        <td class="product-option f-tac">
+                          <span><a class="option-remove f-curp primary-link" style="border-right: 1px solid #CCCCCC;" ng-bind="item.$switchText" ng-click="vm.switchRemove(item)"></a></span>
+                          <span ng-if=" item.remove == 1 "><a class="option-edit f-curp primary-link" ui-sref="product.goods.edit({pskuid: item.guid})">编辑</a></span>
+                          <span ng-if=" item.remove == 0 "><span class="option-edit text-muted" cb-popover popover-placement="top" popover-template-id="product-edit.html" popover-animation="false">编辑</span></span>
+                          <span><a class="option-detail f-curp primary-link" style="border-left: 1px solid #CCCCCC;" ui-sref="product.goods.view({page: vm.currentPage, productid: item.guid})">详情</a></span>
+                        </td>
+
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="grid-loading" ng-if="vm.gridModel.loadingState">
+          <span class="loading"><span><i class="icon-loading"></i></span>正在加载中...</span>
+        </div>
+        <div class="grid-nodata" ng-if="!vm.gridModel.loadingState && !vm.gridModel.itemList.length">
+          <span><i class="icon-not-data"></i>暂无数据</span>
+        </div>
+      </div>
+      <div class="grid-footer f-cb" ng-if="vm.gridModel.itemList.length">
+
+        <div class="grid-paging f-fr" simple-pagination previous-text="&lt;" next-text="&gt;"
+             on-select-page="vm.gridModel.pageChanged(page)" pagination-info="vm.gridModel.paginationinfo"
+             rotate="false" boundary-link-numbers="true" force-ellipses="true" show-page-goto="true"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/ng-template" id="product-edit.html">
+  <p>如需编辑，请先下架。</p>
+</script>

@@ -1,0 +1,197 @@
+<div class="g-view g-home">
+    <div>
+        <div style="background-color: #fff;text-align: center;padding: 40px;">
+            <div class="m-search">
+                <input type="text" class="input-control" ng-model="vm.keyword" ng-change="vm.searchToStart()" placeholder="请输入客户姓名、手机号、车牌">
+                <a ui-sref="trade.order.add" class="u-btn u-btn-primary u-btn-sm" >快速开单</a>
+                <button class="u-btn u-btn-primary u-btn-sm" add-new-customer item="{}" item-handler="vm.addCustomerHandler(data)">新增会员</button>
+                <ul class="search-result-box" ng-if="vm.showResult">
+                    <li ng-if="vm.searchResult.length" ng-repeat="item in vm.searchResult" title="充值、办卡、开单等业务，请点击至详情页操作">
+                        <!-- 会员 -->
+                        <div ng-if="item.storegrade">
+                            <a ui-sref="user.customer.detail({mobile:item.mobile,licence:item.motorindex.licence})">
+                                <div class="people-info">
+                                    <div class="avtor f-fl" style="width: 40px;height: 40px;" ng-bind="item.realname | tradeListUserAvatarFilter"></div>
+                                    <div class="text f-fl" >
+                                        <p ng-bind="item.realname" style="font-size: 16px;color: #333;"></p>
+                                        <p ng-bind="item.mobile" style="font-size: 14px;color: #666;"></p>
+                                    </div>
+                                </div>
+                                <div class="motor-info">
+                                    <div>
+                                        <div class="f-fl">
+                                            <img width="57px" ng-src="{{item.motorindex.logo}}" alt="motor-logo">
+                                        </div>
+                                        <div class="motor-text f-fl" >
+                                            <p ng-bind="item.motorindex.licence" style="font-size: 14px;color: #666;"></p>
+                                            <p class="motor-licence" ng-bind="item.motorindex.model" title="{{item.motorindex.model}}" style="font-size: 12px;color: #666;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="opreate-part f-fl">
+                                    <div class="order-btn" ng-click="vm.gotoOrder($event,item)">开单</div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 临客 -->
+                        <div ng-if="!item.storegrade"></div>
+                    </li>
+                    <li ng-if="!vm.searchResult.length" style="line-height: 62px;padding: 0;">
+                        没有找到 “{{vm.keyword}}” 相关的结果
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="m-dataBox" style="text-align: center;">
+            <ul class="f-cb" style="display: inline-block;">
+                <li class="data-item" style="background-color: #108ee9;">
+                    <a ui-sref="trade.order.list({createtime0:0,page:1})">
+                        <h3>今日开单</h3>
+                        <p>
+                            ￥ <span class="content" ng-bind="vm.dataBase.todaymoney | moneyformatFilter"></span>
+                        </p>
+                        <p class="tips">
+                            <span  ng-bind="vm.dataBase.todaycount"></span> 笔
+                        </p>
+                    </a>
+                </li>
+                <li class="data-item" style="background-color: #f56a00;">
+                    <a ui-sref="trade.order.list({status:1,page:1})">
+                        <h3>服务中</h3>
+                        <p class="content">
+                            <span ng-bind="vm.dataBase.servicing"></span> 笔
+                        </p>
+                    </a>
+                </li>
+                <li class="data-item" style="background-color: #f04134;">
+                    <a ui-sref="trade.order.list({paystatus:1,page:1})">
+                        <h3>未结算</h3>
+                        <p class="content">
+                            <span ng-bind="vm.dataBase.settlementcount"></span> 笔
+                        </p>
+                        <p>
+                            <span class="tips">
+                               ￥ <span ng-bind="vm.dataBase.settlementmoney | moneyformatFilter"></span>
+                            </span>
+                        </p>
+                    </a>
+                </li>
+                <li class="data-item" style="background-color: #7265e6;">
+                    <a ui-sref="user.customer.list({page:1})">
+                        <h3>会员总数</h3>
+                        <p>
+                            <span class="content" ng-bind="vm.dataBase.usercount"></span>
+                        </p>
+                    </a>
+                </li>
+                <li class="data-item" style="background-color: #00a2ae;">
+                    <a ui-sref="markting.jksendrecorde.list({page:1,status:1})">
+                        <h3>今日领券</h3>
+                        <p>
+                            <span class="content" ng-bind="vm.dataBase.todayjkcount"></span> 张
+                        </p>
+                    </a>
+                </li>
+                <li class="data-item" style="background-color: #00a854;">
+                    <a ui-sref="markting.jksendrecorde.list({page:1,status:0})">
+                        <h3>今日用券</h3>
+                        <p>
+                            <span class="content" ng-bind="vm.dataBase.todayusejk"></span> 张
+                        </p>
+                    </a>
+                </li>
+
+                <!--<li class="data-item">
+                    <h3>今日开单</h3>
+                    <p>￥888.00</p>
+                    <p>42笔</p>
+                </li>
+                <li class="data-item">
+                    <h3>服务中</h3>
+                    <p>42笔</p>
+                </li>
+                <li class="data-item">
+                    <h3>未结算</h3>
+                    <p>42笔</p>
+                    <p>￥888.00</p>
+                </li>
+                <li class="data-item">
+                    <h3>会员总数</h3>
+                    <p>888</p>
+                </li>
+                <li class="data-item">
+                    <h3>今日领券</h3>
+                    <p>42笔</p>
+                </li>
+                <li class="data-item">
+                    <h3>今日用券</h3>
+                    <p>42笔</p>
+                </li>-->
+            </ul>
+        </div>
+        <div class="m-chartBox">
+            <div class="chart-tab">
+                <div class="btn-box">
+                    <span ng-class="{'active':vm.chartType == 'pie'}"
+                          ng-click="vm.switchType('pie')">收银统计</span>
+                    <span ng-class="{'active':vm.chartType == 'line'}"
+                          ng-click="vm.switchType('line')">营业统计</span>
+                </div>
+            </div>
+            <div ng-if="vm.chartType === 'pie'" class="chart-content" style="background-color: #fff;width: 100%;">
+                <!--<ul>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                    <li>100</li>
+                </ul>-->
+                <ul class="date-box f-cb">
+                    <li ng-repeat="item in vm.dateArr" class="f-fl" ng-class="{'active':item.current}" ng-click="vm.fetchDataByDate(item)">
+                        <span ng-bind="item.label"></span>
+                    </li>
+                </ul>
+                <div chart="" config="vm.option" style="width: 100%;height: 400px;margin: 0 auto;"></div>
+            </div>
+            <div ng-if="vm.chartType === 'line'" class="chart-content" style="background-color: #fff;">
+                <div chart="" config="vm.option2" style="width: 800px;height: 400px;margin: 0 auto;"></div>
+            </div>
+        </div>
+        <div class="m-storeInfo f-cb">
+            <div class="f-cb f-fl">
+                <img class="f-fl" src="{{vm.shopData.photos}}" alt="" width="50px" height="50px">
+                <div class="store-detail">
+                    <p style="font-size: 16px;"><span ng-bind="vm.shopData.storename"></span><a ui-sref="store.shop.home" class="setting-btn">设置</a></p>
+                    <p class="telephone" ng-bind="vm.shopData.telephone"></p>
+                </div>
+            </div>
+            <div class="server-event f-cb f-fr">
+                <div class="f-fl f-tac">
+                    <p>标准版+库存+车联网</p>
+                    <span class="set-btn">升级</span>
+                </div>
+                <div class="f-fl f-tac" style="margin-left: 70px">
+                    <p>可用短信 <span class="text-danger">999</span> 条</p>
+                    <span class="set-btn">充值</span>
+                </div>
+            </div>
+        </div>
+        <div class="m-suspensionBox f-cb" id="j-guide">
+            <div class="guide-logo">
+                <a class="img-logo" ui-sref="desktop.home" title="工作台首页"></a>
+            </div>
+            <div class="guide-content f-cb">
+                <ul>
+                    <li title="会员管理"><a ui-sref="user.customer.list({page:1})"></a></li>
+                    <li title="未结算订单"><a ui-sref="trade.order.list({paystatus:1,page:1})"></a></li>
+                    <li title="服务中订单"><a ui-sref="trade.order.list({status:1,page:1})"></a></li>
+                    <li title="待办任务功能敬请期待"><a></a></li>
+                    <li title="开单"><a ui-sref="trade.order.add"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div dragable-box=""></div>-->

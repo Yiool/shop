@@ -1,0 +1,43 @@
+<ol class="k-breadcrumb">
+    <li><a ui-sref="user.package.list({page:1})">营销中心</a></li>
+    <li class="active">套餐卡管理</li>
+</ol>
+
+<div class="g-view markting-package-part u-outter-container">
+    <div class="markting-container u-inner-container">
+        <div class="panel-header" simple-search config="vm.searchModel.config" search-handler="vm.searchModel.handler(data)"></div>
+        <!--<div class="panel-body" ng-if="vm.gridModel.columns.length" simple-grid columns="vm.gridModel.columns" store="vm.gridModel.itemList"-->
+             <!--pagination-info="vm.gridModel.paginationinfo" loading-state="vm.gridModel.loadingState"-->
+             <!--config="vm.gridModel.config" page-changed="vm.gridModel.pageChanged(page)"></div>-->
+        <div class="panel-body" ng-if="vm.gridModel.columns.length" simple-grid columns="vm.gridModel.columns" store="vm.gridModel.itemList" config="vm.gridModel.config"></div>
+        <div class="panel-footer" simple-pagination previous-text="&lt;" next-text="&gt;" config="vm.gridModel.config"
+             on-select-page="vm.gridModel.pageChanged(page)" pagination-info="vm.gridModel.paginationinfo"
+             rotate="false" boundary-link-numbers="true" force-ellipses="true" show-page-goto="true"></div>
+
+    </div>
+</div>
+
+<script type="text/ng-template" id="marktingPackageInfo.html">
+    <div id="package-info">
+        <table>
+            <tr>
+                <th class="info-header">类型</th>
+                <th class="info-header">名称</th>
+                <th class="info-header">原价</th>
+                <th class="info-header">套餐价</th>
+                <th class="info-header">包含数量</th>
+            </tr>
+            <tr ng-repeat="item in templateData" bindonce="templateData" ng-if="templateData.length" class="info-body">
+                <td bo-bind="item.type" class="info-item"></td>
+                <td bo-bind="item.name" class="info-item"></td>
+                <td bo-bind="item.originprice" class="info-item"></td>
+                <td bo-bind="item.price" class="info-item"></td>
+                <td bo-bind="item.num" class="info-item"></td>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script type="text/ng-template" id="package-edit.html">
+    <p>如需编辑，请先停售。</p>
+</script>

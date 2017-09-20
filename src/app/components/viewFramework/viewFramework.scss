@@ -1,0 +1,111 @@
+$mini: 40px;
+$full: 150px;
+$topbar: 110px;
+$lessTopbar: 30px;
+body {
+  position: relative;
+}
+html,body,.view-framework{
+  width: 100%;
+  height: 100%;
+}
+
+.less-top-bar {
+  .viewFramework-topbar {
+    height: $lessTopbar;
+  }
+  .topbar-wrap {
+    display: none;
+  }
+  .viewFramework-sidebar {
+    top: $lessTopbar;
+  }
+  .viewFramework-main {
+    padding-top: $lessTopbar;
+    margin-bottom: $topbar;
+  }
+}
+
+.viewFramework-topbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 102;
+  width: 100%;
+  height: $topbar;
+  background-color: #282828;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.viewFramework-sidebar {
+  position: fixed;
+  top: $topbar;
+  bottom: 0;
+  width: $full;
+  background-color: #4c4c4c;
+  z-index: 102;
+  overflow-x: hidden;
+  .sidebar-content {
+    width: $full + 20px;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+  .sidebar-inner {
+    width: $full;
+  }
+}
+
+.viewFramework-main {
+  position: relative;
+  margin-left: $full;
+  padding-top: $topbar;
+  min-height: 500px;
+  background: #fff;
+}
+
+
+.viewFramework-sidebar-mini {
+  .viewFramework-sidebar {
+    width: $mini;
+    .sidebar-content {
+      width: $mini + 20px;
+    }
+    .sidebar-inner {
+      width: $mini;
+    }
+  }
+  .viewFramework-main{
+    margin-left: $mini;
+  }
+}
+
+.viewFramework-sidebar-full {
+  .viewFramework-sidebar {
+    width: $full;
+    .sidebar-content {
+      width: $full + 20px;
+    }
+    .sidebar-inner {
+      width: $full;
+    }
+  }
+  .viewFramework-main{
+    margin-left: $full;
+  }
+}
+
+
+
+.viewFramework-body {
+  padding: 10px 0;
+}
+
+.k-form-error {
+  padding: 0;
+  padding-top: 10px;
+  list-style: none;
+  li {
+    color: red;
+  }
+}

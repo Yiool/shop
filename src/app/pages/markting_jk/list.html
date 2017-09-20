@@ -1,0 +1,37 @@
+<ol class="k-breadcrumb">
+    <li><a ui-sref="markting.jk.list({page:1})">营销中心</a></li>
+    <li class="active">积客券管理</li>
+</ol>
+
+<!--<br>-->
+<div class="g-view jk-coupon-list u-outter-container" style="padding: 15px;">
+    <div class="special-table u-inner-container" style="min-width:1148px;">
+        <div class="top-part" cb-access-control="chebian:store:markting:jk:view" simple-search config="vm.searchModel.config" search-handler="vm.searchModel.handler(data)"></div>
+        <!--<div class="body-part list" ng-if="vm.gridModel.columns.length" simple-grid columns="vm.gridModel.columns" store="vm.gridModel.itemList"-->
+             <!--pagination-info="vm.gridModel.paginationinfo" loading-state="vm.gridModel.loadingState"-->
+             <!--config="vm.gridModel.config"  sort-changed="vm.gridModel.sortChanged(data)" page-changed="vm.gridModel.pageChanged(page)"></div>-->
+        <div class="body-part list"
+             ng-if="vm.gridModel.columns.length"
+             simple-grid columns="vm.gridModel.columns"
+             store="vm.gridModel.itemList"
+             loading-state="vm.gridModel.loadingState"
+             config="vm.gridModel.config"  sort-changed="vm.gridModel.sortChanged(data)"></div>
+        <div class="u-pagination" simple-pagination previous-text="&lt;" next-text="&gt;" config="vm.gridModel.config"
+             on-select-page="vm.gridModel.pageChanged(page)" pagination-info="vm.gridModel.paginationinfo"
+             rotate="false" boundary-link-numbers="true" force-ellipses="true" show-page-goto="true"></div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="jkQrCode.html">
+    <div qr text="{{templateData.qrcode}}" width="164" height="164"></div>
+    <div class="use-tips">
+        <p>微信扫该码，即可查看或分享</p>
+        <!--<p>微信扫该码，即可查看或分享</p>-->
+        <!--<p>查看积客券并分享</p>-->
+    </div>
+</script>
+
+<script type="text/ng-template" id="tips.html">
+    <p>即满足一定消费金额可用</p>
+</script>

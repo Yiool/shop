@@ -1,0 +1,228 @@
+.g-view-template {
+  width: 100%;
+  min-height: 100%;
+  height:100%;
+  background-color: #d7d7d7;
+  padding: 15px;
+}
+.content-wrapper {
+  height:94%;
+  background-color: #fff;
+}
+.m-explaintion {
+  position: relative;
+  padding:20px;
+  padding-left: 30px;
+  color: rgb(102,102,102);
+  line-height: 28px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+.m-opreat {
+  background-color: #fff;
+  padding: 30px 0 20px 30px;
+}
+.m-list {
+  position: relative;
+  table {
+    width: 100%;
+    border:1px solid #eee;
+    background-color: #fff;
+    thead {
+      tr {
+        line-height: 40px;
+        background-color: #f2f2f2;
+      }
+    }
+    tbody {
+      tr {
+        height: 40px;
+        line-height: 40px;
+        border-bottom:1px solid #eee;
+        &:hover {
+          background-color: rgb(250,250,250);
+        }
+      }
+      .popover {
+        width: 500px;
+        max-width: 1000px;
+        .popover-content {
+          //padding:0;
+        }
+        table {
+          width: 100%;
+          border:none;
+          tr {
+            background-color: #fff;
+          }
+          thead {
+            padding:0 10px;
+            color: #333;
+            tr {
+              border-bottom:1px solid #eee;
+            }
+          }
+          tbody {
+            color: #666;
+            tr {
+              border:none;
+              &:hover {
+                background-color: rgb(250,250,250);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .grid-loading{
+    height: 300px;
+    line-height: 300px;
+    text-align: center;
+    background-color: #fff;
+    .loading{
+      display: inline-block;
+      vertical-align: middle;
+      width: 180px;
+      height: 36px;
+      line-height: 36px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+      > span{
+        position: relative;
+        top: -2px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        i{
+          position: absolute;
+          left: 0;
+          top: 0;
+          font-size: 20px;
+          animation: rotate 1s infinite;
+        }
+      }
+    }
+  }
+  .grid-nodata{
+    background-color: #fff;
+    height: 300px;
+    line-height: 300px;
+    text-align: center;
+    > span{
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 30px;
+      color: #ccc;
+      i{
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+
+.viewFramework-create-order-template-dialog {
+  .modal-dialog {
+    width: 1000px;
+  }
+  .modal-body {
+    padding: 20px;
+    margin-bottom: 20px;
+    .has-error {
+      border-color: #e71e28;
+      -webkit-box-shadow: 0 0 2px rgba(231, 30, 40, .5) ;
+      -moz-box-shadow: 0 0 2px rgba(231, 30, 40, .5);
+      box-shadow: 0 0 5px rgba(231, 30, 40, .5);
+    }
+    .disabled {
+      background-color: #f0f0f0;
+      cursor: not-allowed;
+    }
+    table {
+      width: 100%;
+      margin-top: 15px;
+      border:1px solid #eee;
+      thead {
+        line-height: 40px;
+        background-color: #f2f2f2;
+        th {
+          padding:0 10px;
+        }
+      }
+      tbody {
+        height: 60px;
+        line-height: 60px;
+        tr {
+          border-bottom: 1px solid #eee;
+          td {
+            padding:0 10px;
+          }
+          select {
+            border: 1px solid #038AE3;
+            height: 30px;
+            line-height: 30px;
+            margin-top: -2px;
+            font-size: 12px;
+            option {
+              height: 30px;
+              line-height: 30px;
+              &:hover {
+                background-color: #038AE3;
+              }
+            }
+          }
+        }
+        .pull-down-list {
+          position: absolute;
+          top: 34px;
+          left: 0;
+          width: 370px;
+          background-color: #fff;
+          border:1px solid #eee;
+          max-height: 200px;
+          overflow-y: auto;
+          li {
+            line-height: 34px;
+            padding-left:20px;
+            cursor: pointer;
+            &:hover {
+              background-color: #038AE3;
+            }
+          }
+        }
+      }
+      .t-footer {
+        height: 40px;
+        button {
+          width: 220px;
+          height: 34px;
+          color: #038AE3;
+          background-color: #fff;
+          border: 1px solid #038AE3;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+          &:hover {
+            color: #fff;
+            background-color: #038AE3;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .event-title {
+      min-width: 120px;
+      margin-right: 10px;
+      text-align: right;
+      line-height: 34px;
+    }
+    .event-content {
+      width: 280px;
+    }
+  }
+
+}

@@ -1,0 +1,67 @@
+<div class="viewFramework-system-role-dialog">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" z-index="-1" ng-click="close(false)" aria-hidden="true">&times;</button>
+        <h5 class="modal-title" ng-bind="title"></h5>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div alert type="warning" ng-if="alertWarning">
+            <p ng-bind="alertWarning"></p>
+        </div>
+        <div class="form-group f-cb">
+            <label for="inputEmail3" class="b-w-3 control-label"><span class="text-red"><i class="icon-required"></i></span>角色名称：</label>
+            <div class="b-w-8">
+                <input type="text" autocomplete="off" id="inputEmail3" class="input-control" ng-model="item.rolename">
+            </div>
+        </div>
+        <!--<div class="form-group clearfix">
+            <label for="inputEmail3" class="col-sm-3 control-label"><i class="text-danger">*</i> 角色范围：</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-model="item.datascope">
+                    <option value="">&#45;&#45; 请选择角色范围 &#45;&#45;</option>
+                    <option value="0">所有数据</option>
+                    <option value="1">所在店铺及以下数据</option>
+                    <option value="2">仅个人数据</option>
+                </select>
+            </div>
+        </div>-->
+        <h5 class="header" style="line-height: 40px;border-bottom: 1px solid #efefef;border-top: 1px solid #efefef;"><span class="text-red"><i class="icon-required"></i></span>设置权限（至少选择一项）</h5>
+        <div class="w-role">
+            <ul class="list">
+                <li bf-template="item.items" ng-repeat="node in $dataSource">
+                    <div>
+                        <span class="toggle" ng-if="node.$hasChildren()" ng-click="node.$foldToggle()">
+                          <span ng-if="!node.$isFolded()">-</span>
+                          <span ng-if="node.$isFolded()">+</span>
+                        </span>
+                        <label class="title">
+                            <!-- 在数据变化时，调用服务中的相应函数来更新父节点和子节点状态 -->
+                            <!-- 通过自定义指令bf-check-indeterminate来吧模型更新到界面上 -->
+                            <input type="checkbox"
+                                   bf-check-indeterminate="node.$isIndeterminate()"
+                                   ng-model="node.$checked"
+                                   ng-checked="node.$checked"
+                                   ng-change="node.$setCheckState(node.$checked)" style="vertical-align:middle; margin-top:0;">
+                            {{node.menuname}}
+                        </label>
+                    </div>
+                    <ul class="sub-list" ng-if="node.$hasChildren() && !node.$isFolded()">
+                        <li bf-recurse="node.items"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="alert alert-danger" ng-if="interceptor">
+            <p>编辑此项后，会影响其他账号权限，您确定要编辑吗？</p>
+        </div>
+        <div class="inline-block margin-right" ng-if="interceptor">
+            <button class="u-btn u-btn-warning u-btn-sm" ng-click="interceptorConfirm()">确定编辑</button>
+            <button class="u-btn u-btn-default u-btn-sm" ng-click="close(false)">暂不编辑</button>
+        </div>
+        <div class="inline-block f-tac" ng-if="!interceptor">
+            <button class="u-btn u-btn-primary u-btn-sm" ng-click="confirm()" ng-disabled="!item.rolename">确　定</button>　　
+          　<button class="u-btn u-btn-cancel u-btn-sm" ng-click="close(false)">取　消</button>
+        </div>
+    </div>
+</div>
